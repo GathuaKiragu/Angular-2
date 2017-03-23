@@ -1,28 +1,13 @@
 import { Component } from '@angular/core';
-import { Task } from './task.model';
 
 @Component({
   selector: 'my-app',
   template: `
+
   <div class="container">
    <pies></pies>
-    <h1>My First Angular 2 App</h1>
-    <div *ngFor="let currentTask of tasks">
-      <h3>{{ currentTask.description }}</h3>
-      <button (click)="showDetails(currentTask)">Edit</button>
-    </div>
-    <h1>Edit Task</h1>
-    <div>
-      <label>Enter Task Description:</label>
-      <input [(ngModel)]="selectedTask.description">
-    </div>
-    <div>
-      <label>Enter Task ID:</label>
-      <input [(ngModel)]="selectedTask.id">
-      <button (click)="finishedEditing()">Done</button>
-    </div>
+    <h1>This is My First Angular 2 App</h1>
   </div>
-  <pies></pies>
   `
 })
 
@@ -37,7 +22,9 @@ export class AppComponent {
   showDetails(clickedTask: Task) {
     this.selectedTask = clickedTask;
   }
-  finishedEditing() {
+}
 
-  }
+export class Task {
+  public done: boolean = false;
+  constructor(public description: string, public id: number) {   }
 }
