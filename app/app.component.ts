@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Task } from './task.model';
 
 @Component({
   selector: 'my-app',
@@ -7,22 +6,13 @@ import { Task } from './task.model';
   <div class="container">
    <pies></pies>
     <h1>My First Angular 2 App</h1>
-    <div *ngFor="let currentTask of tasks">
-      <h3>{{ currentTask.description }}</h3>
-      <button (click)="showDetails(currentTask)">Edit</button>
-    </div>
-    <h1>Edit Task</h1>
+    <h3 (click)="showDetails(currentTask)" *ngFor="let currentTask of tasks">{{ currentTask.description }}</h3>
     <div>
-      <label>Enter Task Description:</label>
-      <input [(ngModel)]="selectedTask.description">
-    </div>
-    <div>
-      <label>Enter Task ID:</label>
-      <input [(ngModel)]="selectedTask.id">
-      <button (click)="finishedEditing()">Done</button>
+      <h1>Edit Task</h1>
+      <p>Description: {{ selectedTask.description }}</p>
+      <p>Task ID: {{ selectedTask.id }}</p>
     </div>
   </div>
-  <pies></pies>
   `
 })
 
@@ -40,4 +30,9 @@ export class AppComponent {
   finishedEditing() {
 
   }
+}
+
+export class Task {
+  public done: boolean = false;
+  constructor(public description: string, public id: number) {   }
 }
